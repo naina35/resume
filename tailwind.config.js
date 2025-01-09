@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {colors:{
       lpurple:'#CB9DF0',
-      peach:'#F0C1E1',
-      khoa:'#FDDBBB',
+      peach:'#FDDBBB',
+      khoa:'#F0C1E1',
       softsun:'#FFF9BF'
     }},
     
