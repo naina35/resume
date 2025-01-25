@@ -1,42 +1,22 @@
 import { useState } from 'react';
 
-export default function Basic() {
-    const [fn, setFn] = useState("");
-    const [ln, setLn] = useState("");
-    const [pn, setPn] = useState(0);
-    const [first, setFirst] = useState("");
-    const [last, setLast] = useState("");
-    const [phone, setPhone] = useState(0);
-    const [showInp, setShowInp] = useState(true);
-
-    const handleSubmit = () => {
-        setFirst(fn);
-        setLast(ln);
-        setPhone(pn);
-        setShowInp(!showInp);
-    }
-
+export default function Basic({person,setPerson}){
     
+    const [input,setInput]=useState(true);
+    return (<div>
+        {input&&<>
+        First Name: <input type="text" value={person.fn} onChange={(e)=>setPerson((p)=>({...p,fn:e.target.value}))}/>
+        Last Name: <input type="text" value={person.ln} onChange={(e)=>setPerson((p)=>({...p,ln:e.target.value}))}/>
+        Phone:<input type="text" value={person.pn} onChange={(e)=>setPerson((p)=>({...p,pn:e.target.value}))}/>
+        </>
+        }
+        <button onClick={()=>{setInput(!input);}}>{input?'Submit':'Edit'}</button>
+        <button onClick={()=>{setInput(true); setPerson({fn:'',ln:'',pn:''})}}>Reset</button>
+        {!input&&
+        <><h3>{person.fn} {person.ln}</h3>
+        <p>{person.pn}</p>
+        </>}
+    </div>);
 
-    return (
-        <div className="bg-peach shadow-md shadow-softsun p-6 rounded-lg">
-            {showInp === true ? (
-                <div>
-                    <h3>Basic Details</h3>
-                    <p>First Name:</p>
-                    <input type="text"   className="bg-khoa border-2 border-softsun text-gray-700 p-2 rounded focus:border-lpurple focus:outline-none" placeholder="First Name" value={fn} onChange={(e) => setFn(e.target.value)} />
-                    <p>Last Name:</p>
-                    <input type="text"    className="bg-khoa border-2 border-softsun text-gray-700 p-2 rounded focus:border-lpurple focus:outline-none" placeholder="Last Name" value={ln} onChange={(e) => setLn(e.target.value)} />
-                    <p>Phone Number:</p>
-                    <input type="text"    className="bg-khoa border-2 border-softsun text-gray-700 p-2 rounded focus:border-lpurple focus:outline-none" placeholder="Phone Number" onChange={(e) => setPn(e.target.value)} />
-                </div>
-            ) : (
-                <div>
-                    <h3 className="text-center">{first} {last}</h3>
-                    <p className="text-center">{phone}</p>
-                </div>
-            )}
-            <button className="bg-lpurple text-gray-100 border-2 border-purple-600 py-2 px-4 rounded hover:bg-purple-600 hover:text-softsun" onClick={handleSubmit}>{showInp?'Submit':'Reset'}</button>
-        </div>
-    );
+
 }

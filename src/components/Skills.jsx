@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
-export default function Skills(){
-    const [skills,setSkills]=useState([]);
+export default function Skills({skills,setSkills}){
+    
     const [showInp,setShowInp]=useState(true);
     const [skill,setSkill]=useState('');
 
@@ -22,4 +22,3 @@ export default function Skills(){
         </div>
     );
 }
-

@@ -1,15 +1,8 @@
 import {useState} from 'react';
 
-export default function Education(){
+export default function Education({edu,setEdu}){
     //college,degree,branch,from,to ,cgpa
-    const[edu,setEdu]=useState({
-        college:'',
-        degree:'',
-        branch:'',
-        from:'',
-        to:'',
-        cgpa:''
-    });
+    
     const [showInp,setShowInp]=useState(true);
     const handleClg=(e)=>{
         const edu2={...edu};
