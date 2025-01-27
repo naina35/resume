@@ -12,7 +12,7 @@ html {
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #e8f6ff; /* Light blue background */
+  background-color: #E8F9FF; /* Light blue background */
   color: #222;
   line-height: 1.6;
   padding: 20px;
@@ -79,19 +79,19 @@ input:focus, textarea:focus {
 
 /* Button styling */
 button {
-  background-color: #ff4500; /* OrangeRed */
+  background-color: #C5BAFF; 
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3 s ease, transform 0.2 s ease;
 }
 
 /* Hover effect for buttons */
 button:hover {
-  background-color: #e63900; /* Slightly darker OrangeRed */
+  background-color: #afa2f0; /* Slightly darker PURPLE*/
   transform: translateY(-2px);
 }
 
