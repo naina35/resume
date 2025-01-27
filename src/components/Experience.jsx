@@ -8,8 +8,8 @@ export default function Experience({exp,setExp,expList,setExpList}){
         setShowInp(true);
     }
     
-    return (<>
-    {showInp&& <div className="">
+    return (<div>
+    {showInp&& <>
         <h3>Experience</h3>
         <p>Company:</p>
         <input type='text'  className="   " placeholder='company' value={exp.company} onChange={(e)=>setExp({...exp,company:e.target.value})}/>
@@ -28,9 +28,9 @@ export default function Experience({exp,setExp,expList,setExpList}){
               
         }}>submit</button>
         
-        </div>}
+        </>}
         
-        <div className=" ">
+        <>
             {
                 expList.map((exp, index) => (
                     <div key={index}>
@@ -42,6 +42,6 @@ export default function Experience({exp,setExp,expList,setExpList}){
                   ))                  
             }
             <button className=" " onClick={addNewExp}>Add</button>
-        </div>
-    </>);
+        </>
+    </div>);
 }

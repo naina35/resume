@@ -15,21 +15,21 @@ function App() {
   const [experienceList,setExperienceList] = useState([]);
   const [dl,setDl]=useState(false);
   return (
-    <div className="bg-gray-200 ">
+    <>
       <Basic person={person} setPerson={setPerson}/><br/>
       <Education edu={edu}setEdu={setEdu}/><br/>
       <Skills skills={skills} setSkills={setSkills}/><br/>
       <Experience exp={experience} setExp={setExperience} expList={experienceList} setExpList={setExperienceList}/><br/>
       <br />
       <button onClick={()=>setDl(true)}> Generate pdf</button>
-      { dl&& <div className="text-center mt-6">
+      { dl&& <>
 
       <PDFDownloadLink document={<Generate Basic={person} edu={edu} skills={skills} exp={experienceList} />} fileName="Resume.pdf">
   {({ loading }) => (loading ? 'Generating PDF...' : 'Download PDF')}
 </PDFDownloadLink>
 <br/>
-    </div>}
-      </div>
+    </>}
+      </>
   );
 }
 
