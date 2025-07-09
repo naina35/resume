@@ -1,60 +1,103 @@
-import {useState} from 'react';
+import React, { useState } from 'react';
+import { GraduationCap,Save,Edit } from 'lucide-react';
 
-export default function Education({edu,setEdu}){
-    //college,degree,branch,from,to ,cgpa
-    
-    const [showInp,setShowInp]=useState(true);
-    const handleClg=(e)=>{
-        const edu2={...edu};
-        edu2.college=e.target.value;
-        setEdu(edu2);
+export default  function Education({ education, setEducation }) {
+    const [isEditing, setIsEditing] = useState(true);
+    const handleChange = (field, value) => {
+      setEducation(prev => ({ ...prev, [field]: value }));
     };
-    const handleDeg=(e)=>{
-        const edu2={...edu};
-        edu2.degree=e.target.value;
-        setEdu(edu2);
-    };
-    const handleBranch=(e)=>{
-        const edu2={...edu};
-        edu2.branch=e.target.value;
-        setEdu(edu2);
-    };
-    const handleFrom=(e)=>{
-        const edu2={...edu};
-        edu2.from=e.target.value;
-        setEdu(edu2);
-    };
-    const handleTo=(e)=>{
-        const edu2={...edu};
-        edu2.to=e.target.value;
-        setEdu(edu2);
-    };
-    const handleCgpa=(e)=>{
-        const edu2={...edu};
-        edu2.cgpa=e.target.value;
-        setEdu(edu2);
-    };
-    return (<>{showInp===true?(
-            <div >
-            <h3>Education</h3>
-            <p>College:</p>
-            <input   className=" " placeholder='College' value={edu.college} onChange={handleClg}/>
-            <p>Degree:</p>
-            <input   className=" " placeholder='Degree' value={edu.degree} onChange={handleDeg}/>
-            <p>Branch</p>
-            <input   className=" " placeholder='Branch' value={edu.branch} onChange={handleBranch}/>
-            <p>From</p>
-            <input   className=" " placeholder='2022' value={edu.from} onChange={handleFrom}/>
-            <p>To</p>
-            <input   className=" " placeholder='2026' value={edu.to} onChange={handleTo}/>
-            <p>gpa:</p>
-            <input   className=" " placeholder='7.5' value={edu.cgpa} onChange={handleCgpa}/>
-            </div>):(
+  
+    return (
+      <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+            <GraduationCap className="w-5 h-5 text-blue-600" />
+            Education
+          </h2>
+          <button
+            onClick={() => setIsEditing(!isEditing)}
+            className="flex items-center gap-2 px-3 py-1.5 text-sm bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
+          >
+            {isEditing ? <Save className="w-4 h-4" /> : <Edit className="w-4 h-4" />}
+            {isEditing ? 'Save' : 'Edit'}
+          </button>
+        </div>
+  
+        {isEditing ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">College/University</label>
+              <input
+                type="text"
+                value={education.college}
+                onChange={(e) => handleChange('college', e.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="University Name"
+              />
+            </div>
             <div>
-            <p>{edu.college}</p>
-            <p>{edu.degree}  {edu.branch}      {edu.from}-{edu.to}</p>
-            <p>{edu.cgpa}</p>
-            </div> )}
-            <button className= "" onClick={()=>setShowInp(!showInp)}>{showInp?'Submit':'Reset'}</button></>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Degree</label>
+              <input
+                type="text"
+                value={education.degree}
+                onChange={(e) => handleChange('degree', e.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Bachelor's/Master's"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Branch/Major</label>
+              <input
+                type="text"
+                value={education.branch}
+                onChange={(e) => handleChange('branch', e.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Computer Science"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">From</label>
+              <input
+                type="text"
+                value={education.from}
+                onChange={(e) => handleChange('from', e.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="2020"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">To</label>
+              <input
+                type="text"
+                value={education.to}
+                onChange={(e) => handleChange('to', e.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="2024"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">CGPA/GPA</label>
+              <input
+                type="text"
+                value={education.cgpa}
+                onChange={(e) => handleChange('cgpa', e.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="3.8"
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="py-4">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">
+              {education.degree} in {education.branch}
+            </h3>
+            <p className="text-gray-600 mb-1">{education.college}</p>
+            <p className="text-gray-600">
+              {education.from} - {education.to} | CGPA: {education.cgpa}
+            </p>
+          </div>
+        )}
+      </div>
     );
-}
+  }
+  
